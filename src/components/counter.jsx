@@ -1,28 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
+import { render } from "react-dom";
 
-const Counter = () => {
-  let count = 3;
-  const formatCount = () => {
-    return count === 0 ? "Empty" : count;
-  }
+const Counter = (props) => {
+  const [value, setValue] = useState(props.value);
+  const formatValue = () => {
+    return value === 0 ? "Empty" : value;
+  };
   const imageURL = "https://picsum.photos/200";
 
-  const getBadgeclasses = () => {
+  const getBadgeClasses = () => {
     let classes = "badge m-2 ";
-    return classes += count === 0 ? "bg-warning" : "bg-primary";
-  }
+    return (classes += value === 0 ? "bg-warning" : "bg-primary");
+  };
   const handleIncrement = () => {
-    count = count + 1;
-    console.log(count)
-  }
+    setValue((prevState) => prevState + 1);
+  };
+  const handleDecrement = () => {
+    setValue((prevState) => prevState - 1);
+  };
 
   return (
-    // <React.Fragment> 
-    <>
-      <img src={ imageURL } alt="image" />
-      <span className={ getBadgeclasses() }>{ formatCount() }</span>
-      <button className="btn btn-primary btn-sm m-2" onClick={ handleIncrement }>+</button>
-    </>
+    // <React.Fragment>
+    <div>
+      <span>{props.name}</span>
+      <span className={getBadgeClasses()}>{formatValue()}</span>
+      <button className="btn btn-primary btn-sm m-2" onClick={handleIncrement}>
+        +
+      </button>
+      <button className="btn btn-primary btn-sm m-2" onClick={handleDecrement}>
+        -
+      </button>
+    </div>
     // </React.Fragment>
   );
 };
