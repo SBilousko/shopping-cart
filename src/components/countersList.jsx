@@ -17,11 +17,17 @@ const CountersList = () => {
   const handleReset = () => {
     setCounters(initialState);
   };
+  const handleIncrement = (id) => {
+    initialState[id].value += 1
+  };
+  const handleDecrement = (id) => {
+    setCounters(initialState[id].value);
+  };
 
   return (
     <>
       {counters.map((count) => (
-        <Counter {...count} key={count.id} onDelete={handleDelete} />
+        <Counter {...count} key={count.id} onDelete={handleDelete} onIncrement={handleIncrement} onDecrement={handleDecrement} />
       ))}
       <button className="btn btn-primary btn-sm m-2" onClick={handleReset}>
         Сброс
