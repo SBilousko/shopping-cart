@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { render } from "react-dom";
+import React from "react";
 
 const Counter = (props) => {
   const { value } = props;
@@ -7,7 +6,6 @@ const Counter = (props) => {
   const formatValue = () => {
     return value === 0 ? "Empty" : value;
   };
-  const imageURL = "https://picsum.photos/200";
 
   const getBadgeClasses = () => {
     let classes = "badge m-2 ";
@@ -19,10 +17,16 @@ const Counter = (props) => {
     <div>
       <span>{props.name}</span>
       <span className={getBadgeClasses()}>{formatValue()}</span>
-      <button className="btn btn-primary btn-sm m-2" onClick={() => props.onIncrement(props.id)}>
+      <button
+        className="btn btn-primary btn-sm m-2"
+        onClick={() => props.onIncrement(props.id)}
+      >
         +
       </button>
-      <button className="btn btn-primary btn-sm m-2" onClick={() => props.onDecrement(props.id)}>
+      <button
+        className="btn btn-primary btn-sm m-2"
+        onClick={() => props.onDecrement(props.id)}
+      >
         -
       </button>
       <button
